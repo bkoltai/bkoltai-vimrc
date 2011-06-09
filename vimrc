@@ -1,3 +1,6 @@
+" Use SuperTab for tab complete. See url:
+" http://www.vim.org/scripts/script.php?script_id=1643
+
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
 
@@ -65,21 +68,6 @@ match OverLength /\%81v.\+/
 
 "My mappings
 imap jj <Esc>
-
-" Autocomplete stuff
-set completeopt=longest,menuone,preview
- function! HandleTab()
- 	let snippet_response = exists("TriggerSnippet") ? TriggerSnippet() : "\<tab>"
- 	if snippet_response != "\<tab>"
- 		return snippet_response
- 	elseif exists("omnifunc") && col('.') > 1 && strpart( getline('.'), col('.')-2, 3) =~ '^\w'
- 		return "\<C-X>\<C-O>"
- 	else
- 		return "\<Tab>"
- 	endif
- endfunction
-
-inoremap <Tab> <C-R>=HandleTab()<CR>
 
 " Custom tab settings
 if has("autocmd")
